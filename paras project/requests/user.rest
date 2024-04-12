@@ -1,0 +1,22 @@
+### Register Request
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+    "email": "example_email",
+    "username": "example_user",
+    "password": "example_password"
+}
+
+### Login Request
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "example_email",
+    "password": "example_password"
+}
+
+### Logout Request
+GET http://localhost:3000/auth/logout
+Authorization: Bearer <access_token>
