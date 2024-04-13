@@ -56,7 +56,7 @@ const Dashboard = () => {
             </li>
             <li>
               <button
-                className={`flex items-center w-full py-2 px-4 text-left rounded-lg${
+                className={`flex items-center w-full py-2 px-4 text-left rounded-lg ${
                   activeTab === "chatSystem" ? "bg-gray-900" : ""
                 }`}
                 onClick={() => handleTabChange("chatSystem")}
@@ -78,7 +78,7 @@ const Dashboard = () => {
             </li>
             <li>
               <button
-                className={`flex items-center w-full py-2 px-4 text-left rounded-lg${
+                className={`flex items-center w-full py-2 px-4 text-left rounded-lg ${
                   activeTab === "reports" ? "bg-gray-900" : ""
                 }`}
                 onClick={() => handleTabChange("reports")}

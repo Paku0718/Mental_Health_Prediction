@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import Axios
-import backgroundImage from "./assets/loginback.png"; // Import your background image here
+import axios from "axios";
+import backgroundImage from "./assets/loginback.png";
+import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +26,8 @@ const LoginForm = () => {
 
       console.log("Login successful:", response.data);
 
-      // Clear form fields after successful login
-      setEmail("");
-      setPassword("");
+      // Redirect to dashboard after successful login
+      navigate("/dashboard");
     } catch (error) {
       console.error("Login error:", error.message);
     } finally {

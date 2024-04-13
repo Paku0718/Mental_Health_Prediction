@@ -20,3 +20,5 @@ Content-Type: application/json
 ### Logout Request
 GET http://localhost:3000/auth/logout
 Authorization: Bearer <access_token>
+
+
