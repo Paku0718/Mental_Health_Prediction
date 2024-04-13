@@ -4,6 +4,8 @@ import axios from "axios";
 
 const Questionnaire = () => {
   const [responses, setResponses] = useState({});
+  const [userId, setuserId] = useState(123);
+
 
   const questions = [
     {
@@ -76,22 +78,22 @@ const Questionnaire = () => {
     // Add more questions here
   ];
 
-  const handleOptionChange = (questionId, option) => {
+  const handleOptionChange = async (questionId, option) => {
+    const item = await questions.filter((item) => item.id === questionId);
+    const question=item[0].question;
     setResponses((prevResponses) => ({
       ...prevResponses,
-      [questionId]: option,
+      [question]: option,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(responses,'response');
     try {
-      const response = await axios.post("/api/responses", responses);
-      console.log("Response saved:", response.data);
-
-      //  // Clear the form after successful submission
-      //  setResponses({});
-
+      const Data = await axios.post(`http://localhost:3000/${userId}/mental-health`,responses );
+     
+      console.log(Data,'Data');
 
       // Reset the form or perform any other actions
     } catch (error) {
