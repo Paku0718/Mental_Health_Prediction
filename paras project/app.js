@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const sessionMiddleware = require('./config/session');
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes.routes');
+const mentalHealthRoutes = require('./routes/MentalHealth.routes');
 const swaggerDocs =require('./config/swagger');
 const cors = require('cors');
 
@@ -28,6 +29,7 @@ app.use(sessionMiddleware); // Using session middleware
 app.use(cors())
 
 app.use('/auth', authRoutes); 
+app.use('/',mentalHealthRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
