@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const mentalhealthSchema = new mongoose.Schema({
   _id: String,
   session_id: String,
+  userId:String,
   'How are you feeling emotionally today?': Number,
   'Have you experienced any significant changes in your mood recently?': Number,
   'Are you able to sleep well at night?': Number,
