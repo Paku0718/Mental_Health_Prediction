@@ -88,6 +88,9 @@ const Questionnaire = () => {
   };
 
   const handleSubmit = async (e) => {
+    responses['_id']="ObjectId('6618d36e624daabbf0156bea')"
+    responses['session_id']="fa2d63c8-078f-4f1c-9ba8-da512f2dcafc"
+    responses['mental_state']= "moderate"
     e.preventDefault();
     console.log(responses,'response');
     try {
