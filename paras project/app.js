@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const sessionMiddleware = require('./config/session');
 const authRoutes = require('./routes/authRoutes');
-const swaggerDocs =require('./config/swagger')
+const swaggerDocs =require('./config/swagger');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -24,6 +25,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev')); // Log HTTP requests
 app.use(sessionMiddleware); // Using session middleware
+app.use(cors())
 
 app.use('/auth', authRoutes); 
 

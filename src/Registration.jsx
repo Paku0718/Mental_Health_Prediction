@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
 import backgroundImage from "./assets/loginback.png"; // Import your background image here
 
 const RegistrationForm = () => {
@@ -9,16 +10,34 @@ const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    console.log("handle submit click");
     e.preventDefault();
     setLoading(true);
-    // Simulate API call or registration logic
-    setTimeout(() => {
+
+    const userData = {
+      email: email,
+      username: fullName, // Assuming full name is used as username
+      password: password,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/auth/register",
+        userData
+      );
+
+      console.log("Registration successful:", response.data);
+
+      // Reset form fields after successful registration
+      setFullName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+    } catch (error) {
+      console.error("Registration error:", error.message);
+    } finally {
       setLoading(false);
-      console.log("Full Name:", fullName);
-      console.log("Email:", email);
-      console.log("Password:", password);
-      console.log("Confirm Password:", confirmPassword);
-    }, 1000);
+    }
   };
 
   return (
@@ -112,6 +131,7 @@ const RegistrationForm = () => {
                 loading && "opacity-50 cursor-not-allowed"
               }`}
               disabled={loading}
+              onClick={(e) => handleSubmit(e)}
             >
               {loading && (
                 <svg

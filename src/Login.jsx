@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios"; // Import Axios
 import backgroundImage from "./assets/loginback.png"; // Import your background image here
 
 const LoginForm = () => {
@@ -9,12 +10,28 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate API call or authentication logic
-    setTimeout(() => {
+
+    const userData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/auth/login",
+        userData
+      );
+
+      console.log("Login successful:", response.data);
+
+      // Clear form fields after successful login
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      console.error("Login error:", error.message);
+    } finally {
       setLoading(false);
-      console.log("Email:", email);
-      console.log("Password:", password);
-    }, 1000);
+    }
   };
 
   return (
