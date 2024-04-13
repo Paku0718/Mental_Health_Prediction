@@ -6,8 +6,10 @@ import "./index.css";
 import Login from "./Login.jsx";
 import Registration from "./Registration.jsx";
 import Dashboard from "./Dashboard.jsx";
-import MCQForm from "./components/MCQForm.jsx";
-import ChatBot from "./components/ChatBot.jsx";
+// import MCQForm from "./components/MCQForm.jsx";
+// import ChatBot from "./components/ChatBot.jsx";
+import ChatSystem from "./components/dashboardcomponents/ChatSystem.jsx";
+import Questionnaire from "./components/dashboardcomponents/Questionnaire.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -17,8 +19,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* <Route path="/MCQForm" element={<MCQForm />} /> */}
-        {/* <Route path="/ChatBot" element={<ChatBot />} /> */}
+        <Route path="/MCQForm" element={<Questionnaire />} />
+        <Route path="/ChatBot" element={<ChatSystem />} />
       </Routes>
     </Router>
   </React.StrictMode>

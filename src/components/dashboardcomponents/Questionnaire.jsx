@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const MCQForm = () => {
+const Questionnaire = () => {
   const [responses, setResponses] = useState({});
 
   const questions = [
@@ -88,6 +88,11 @@ const MCQForm = () => {
     try {
       const response = await axios.post("/api/responses", responses);
       console.log("Response saved:", response.data);
+
+      //  // Clear the form after successful submission
+      //  setResponses({});
+
+
       // Reset the form or perform any other actions
     } catch (error) {
       console.error("Error saving response:", error);
@@ -159,4 +164,4 @@ const MCQForm = () => {
   );
 };
 
-export default MCQForm;
+export default Questionnaire;

@@ -1,9 +1,9 @@
-// src/components/ChatBot.jsx
+// src/components/ChatSystem.jsx
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FaUserCircle, FaRobot } from "react-icons/fa";
 
-const ChatBot = () => {
+const ChatSystem = () => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const messagesEndRef = useRef(null);
@@ -81,4 +81,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;
+export default ChatSystem;
