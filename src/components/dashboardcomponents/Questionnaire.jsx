@@ -1,7 +1,7 @@
 // src/components/MCQForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const Questionnaire = () => {
   const [responses, setResponses] = useState({});
