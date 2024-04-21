@@ -5,7 +5,7 @@ import useAuthStore from "../../store";
 
 const Reports = () => {
   const [mentalStates, setMentalStates] = useState([]);
-  const userId = useAuthStore((state) => state.userId);
+  const userId = checkUserIdOrLocalStorage();
   useEffect(() => {
     const fetchMentalStates = async () => {
       try {
