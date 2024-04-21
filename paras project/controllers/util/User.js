@@ -1,3 +1,5 @@
+const User = require('../../models/User.model');
+
 exports.checkUserIdExists = async (userId) => {
     try {
       // Assuming you have a model named User for your users
