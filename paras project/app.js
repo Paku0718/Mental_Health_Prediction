@@ -34,7 +34,10 @@ app.get(
 app.use(express.json());
 app.use(morgan("dev")); // Log HTTP requests
 app.use(sessionMiddleware); // Using session middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true, // Allow cookies from cross-origin requests
+}));
 
 app.use("/auth", authRoutes);
 app.use("/", mentalHealthRoutes);

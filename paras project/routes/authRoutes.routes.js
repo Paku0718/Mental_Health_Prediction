@@ -10,7 +10,9 @@ router.post('/login', (req, res) => {
     login(req, res);
 });
 
-router.get('/check-session',CheckSession);
+router.get('/check-session',(req,res)=>{
+    CheckSession(req,res)
+});
 
 router.get('/logout', (req, res) => {
     logout(req, res);

@@ -17,8 +17,12 @@ Content-Type: application/json
     "password": "example_password"
 }
 
+### Check Session Request
+GET  http://localhost:3000/auth/check-session
+
+
 ### Logout Request
 GET http://localhost:3000/auth/logout
-Authorization: Bearer <access_token>
+Authorization: Bearer <access_token>    
 
 

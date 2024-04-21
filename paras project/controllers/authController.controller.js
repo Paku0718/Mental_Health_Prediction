@@ -44,10 +44,10 @@ exports.login = async (req, res) => {
   }
   // Set up session or JWT token for authentication
   req.session.user = { id: user._id, username: user.username };
-  res.status(200).json({ message: 'Login successful', userId: user._id, sessionId: req.sessionID });
+  res.status(200).json({ message: 'Login successful', userId: user._id});
 };
 
-exports.checkSession = async (req, res) => {
+exports.CheckSession = async (req, res) => {
   if (req.session.user && req.session.user.id) {
     // Session exists, user is logged in
     res.status(200).json({ authenticated: true, userId: req.session.user.id });

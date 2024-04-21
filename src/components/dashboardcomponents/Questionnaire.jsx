@@ -2,10 +2,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import axiosInstance from '../../axiosInstance';
+import axiosInstance from "../../axiosInstance";
+import useAuthStore from "../../store";
 const Questionnaire = () => {
   const [responses, setResponses] = useState({});
-  const [userId, setuserId] = useState(123);
+  const userId=useAuthStore((state)=>state.userId)
 
   const questions = [
     {
@@ -110,15 +111,13 @@ const Questionnaire = () => {
 
     // Construct the data object to be sent in the POST request
     const requestData = {
-      session_id: "fa2d63c8-078f-4f1c-9ba8-da512f2dcafc",
-      mental_state: "moderate",
       ...responses, // Spread the responses object
     };
 
     try {
       // Make the POST request to the server
       const response = await axiosInstance.post(
-        `http://localhost:3000/${userId}/mental-health`,
+        `${userId}/mental-health`,
         requestData
       );
 

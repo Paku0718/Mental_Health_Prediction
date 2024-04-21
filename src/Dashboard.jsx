@@ -29,9 +29,7 @@ const Dashboard = () => {
     navigate("/login");
     try {
       // Make a GET request to the /auth/logout endpoint
-      const response = await axiosInstance.get("http://localhost:3000/auth/logout", {
-        withCredentials: true, // Include cookies in the request
-      });
+      const response = await axiosInstance.get("auth/logout");
 
       // If the logout was successful on the server-side
       if (response.status === 200) {

@@ -11,6 +11,7 @@ import Dashboard from "./Dashboard.jsx";
 import ChatSystem from "./components/dashboardcomponents/ChatSystem.jsx";
 import Questionnaire from "./components/dashboardcomponents/Questionnaire.jsx";
 import ProtectedRoute from "./ProtectedRoute.jsx";
+import Test from "./components/Test.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/test" element={<Test/>} />
 
         <Route
           path="/dashboard"

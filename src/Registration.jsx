@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import Axios
 import backgroundImage from "./assets/loginback.png"; // Import your background image here
-import axiosInstance from './axiosInstance';
+import axiosInstance from "./axiosInstance";
 
 const RegistrationForm = () => {
   const [fullName, setFullName] = useState("");
@@ -22,11 +22,7 @@ const RegistrationForm = () => {
     };
 
     try {
-      const response = await axiosInstance.post("auth/register",
-        userData
-      );
-
-      console.log("Registration successful:", response.data);
+      const response = await axiosInstance.post("auth/register", userData);
 
       // Reset form fields after successful registration
       setFullName("");

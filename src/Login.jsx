@@ -3,13 +3,16 @@ import axios from "axios";
 import backgroundImage from "./assets/loginback.png";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "./axiosInstance";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
+import useAuthStore from "./store";
 
 const LoginForm = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const setUserId = useAuthStore((state) => state.setUserId);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,17 +24,8 @@ const LoginForm = ({ history }) => {
     };
 
     try {
-      const response = await axiosInstance.post(
-        "http://localhost:3000/auth/login",
-        userData
-      );
-
-      console.log("Login successful:", response.data);
-
-      // Set cookies for sessionId and userId
-      Cookies.set("sessionId", response.data.sessionId);
-      Cookies.set("userId", response.data.userId);
-
+      const response = await axiosInstance.post("auth/login", userData);
+      setUserId(response.data.userId);
       // Redirect to dashboard after successful login
       navigate("/dashboard");
     } catch (error) {
