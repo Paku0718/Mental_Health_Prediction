@@ -7,7 +7,7 @@ exports.MentalHealthFormInput = async (req, res) => {
     const { session_id, ...data } = req.body;
     const userId = req.params.userId; // Extracting user id from path parameter
     console.log(req.params.userId, "user id")
-    if (checkUserIdExists(userId)) {
+    if (!checkUserIdExists(userId)) {
       return res.status(400).json({ message: "User ID is required." });
     }
 
