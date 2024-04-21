@@ -84,7 +84,7 @@ const MCQForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post("/api/responses", responses);
+      const response = await axiosInstance.post("api/responses", responses);
       console.log("Response saved:", response.data);
       // Reset the form or perform any other actions
     } catch (error) {

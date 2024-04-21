@@ -29,7 +29,7 @@ const ChatSystem = () => {
     setUserInput("");
 
     try {
-      const response = await axiosInstance.post("/api/chatbot", { message: userInput });
+      const response = await axiosInstance.post("api/chatbot", { message: userInput });
       const chatbotResponse = {
         sender: "chatbot",
         text: response.data.message,
