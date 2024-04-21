@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import axiosInstance from "../../axiosInstance";
-import useAuthStore from "../../store";
+import useAuthStore, { checkUserIdOrLocalStorage } from "../../store";
+
 const Questionnaire = () => {
   const [responses, setResponses] = useState({});
-  const userId = useAuthStore((state) => state.userId);
+  const userId = checkUserIdOrLocalStorage();
 
   const questions = [
     {

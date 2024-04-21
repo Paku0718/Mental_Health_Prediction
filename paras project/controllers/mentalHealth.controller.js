@@ -1,17 +1,18 @@
 const MentalHealth = require("../models/MentalHealth.model");
+const {checkUserIdExists}=require("./util/User")
+
 
 exports.MentalHealthFormInput = async (req, res) => {
   try {
     const { session_id, ...data } = req.body;
     const userId = req.params.userId; // Extracting user id from path parameter
-
-    if (!userId) {
+    console.log(req.params.userId, "user id")
+    if (checkUserIdExists(userId)) {
       return res.status(400).json({ message: "User ID is required." });
     }
 
     const mentalHealth = new MentalHealth({
-      session_id,
-      userId, // Saving user id
+      userId, 
       ...data,
     });
     await mentalHealth.save();

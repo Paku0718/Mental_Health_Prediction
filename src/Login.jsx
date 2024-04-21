@@ -26,6 +26,7 @@ const LoginForm = ({ history }) => {
     try {
       const response = await axiosInstance.post("auth/login", userData);
       setUserId(response.data.userId);
+      localStorage.setItem("userId",response.data.userId)
       // Redirect to dashboard after successful login
       navigate("/dashboard");
     } catch (error) {
