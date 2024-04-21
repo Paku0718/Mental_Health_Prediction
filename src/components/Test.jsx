@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Cookies from 'js-cookie';
 import axiosInstance from '../axiosInstance';
 
 const Test = () => {
@@ -11,11 +10,7 @@ const Test = () => {
                 password: 'test'
             });
             console.log(response,"login response");
-            const cookie = response.headers['set-cookie'];
-            Cookies.set('myCookie', cookie);
-            // console.log('Login successful:', response);
-            const setCookieHeader = response.headers;
-            console.log('Set-Cookie header:', setCookieHeader);
+            
             // Additional logic after successful login
         } catch (error) {
             console.error('Error during login:', error);

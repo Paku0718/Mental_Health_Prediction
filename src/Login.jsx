@@ -3,7 +3,7 @@ import axios from "axios";
 import backgroundImage from "./assets/loginback.png";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "./axiosInstance";
-import Cookies from "js-cookie";
+
 import useAuthStore from "./store";
 
 const LoginForm = ({ history }) => {
