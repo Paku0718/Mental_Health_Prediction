@@ -15,7 +15,7 @@ import Reports from "./components/dashboardcomponents/Reports";
 import MCQForm from "./components/MCQForm";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import axiosInstance from './axiosInstance';
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Set initial value as needed
@@ -29,7 +29,7 @@ const Dashboard = () => {
     navigate("/login");
     try {
       // Make a GET request to the /auth/logout endpoint
-      const response = await axios.get("http://localhost:3000/auth/logout", {
+      const response = await axiosInstance.get("http://localhost:3000/auth/logout", {
         withCredentials: true, // Include cookies in the request
       });
 

@@ -42,11 +42,22 @@ exports.login = async (req, res) => {
   if (!isMatch) {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
-
   // Set up session or JWT token for authentication
   req.session.user = { id: user._id, username: user.username };
-  res.status(200).json({ message: 'Login successful' });
+  res.status(200).json({ message: 'Login successful', userId: user._id, sessionId: req.sessionID });
 };
+
+exports.checkSession = async (req, res) => {
+  if (req.session.user && req.session.user.id) {
+    // Session exists, user is logged in
+    res.status(200).json({ authenticated: true, userId: req.session.user.id });
+  } else {
+    // Session doesn't exist or expired, user is not logged in
+    res.status(401).json({ authenticated: false });
+  }
+};
+
+
 
 exports.logout = (req, res) => {
   if (req.session.user) {

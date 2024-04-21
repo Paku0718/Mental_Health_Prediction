@@ -1,7 +1,7 @@
 // src/components/ChatBot.jsx
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-
+import axiosInstance from './axiosInstance';
 const ChatBot = () => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
@@ -27,7 +27,7 @@ const ChatBot = () => {
     setUserInput("");
 
     try {
-      const response = await axios.post("/api/chatbot", { message: userInput });
+      const response = await axiosInstance.post("/api/chatbot", { message: userInput });
       const chatbotResponse = {
         sender: "chatbot",
         text: response.data.message,

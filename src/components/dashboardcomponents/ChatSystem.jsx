@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { FaUserCircle, FaRobot } from "react-icons/fa";
+import axiosInstance from '../../axiosInstance';
 
 const ChatSystem = () => {
   const [messages, setMessages] = useState([]);
@@ -28,7 +29,7 @@ const ChatSystem = () => {
     setUserInput("");
 
     try {
-      const response = await axios.post("/api/chatbot", { message: userInput });
+      const response = await axiosInstance.post("/api/chatbot", { message: userInput });
       const chatbotResponse = {
         sender: "chatbot",
         text: response.data.message,

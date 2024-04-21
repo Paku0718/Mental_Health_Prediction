@@ -10,6 +10,7 @@ import Dashboard from "./Dashboard.jsx";
 // import ChatBot from "./components/ChatBot.jsx";
 import ChatSystem from "./components/dashboardcomponents/ChatSystem.jsx";
 import Questionnaire from "./components/dashboardcomponents/Questionnaire.jsx";
+import ProtectedRoute from "./ProtectedRoute.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -18,9 +19,33 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/MCQForm" element={<Questionnaire />} />
-        <Route path="/ChatBot" element={<ChatSystem />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/MCQForm"
+          element={
+            <ProtectedRoute>
+              <Questionnaire />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/ChatBot"
+          element={
+            <ProtectedRoute>
+              <ChatSystem />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-
+import axiosInstance from '../../axiosInstance';
 const Questionnaire = () => {
   const [responses, setResponses] = useState({});
   const [userId, setuserId] = useState(123);
@@ -117,7 +117,7 @@ const Questionnaire = () => {
 
     try {
       // Make the POST request to the server
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         `http://localhost:3000/${userId}/mental-health`,
         requestData
       );
