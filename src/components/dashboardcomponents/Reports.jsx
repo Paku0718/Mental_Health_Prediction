@@ -1,32 +1,36 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import axiosInstance from "../../axiosInstance";
+import useAuthStore from "../../store";
 
 const Reports = () => {
-  const [mentalState, setMentalState] = useState("");
-
+  const [mentalStates, setMentalStates] = useState([]);
+  const userId = useAuthStore((state) => state.userId);
   useEffect(() => {
-    const fetchMentalHealthData = async () => {
+    const fetchMentalStates = async () => {
       try {
-        const userId = "your_user_id"; // Replace with the actual user ID
-        const response = await fetch(`/api/mental-health/${userId}`);
-        const data = await response.json();
-
-        if (response.ok) {
-          setMentalState(data.mental_state);
-        } else {
-          console.error("Error fetching mental health data:", data.message);
-        }
+        const response = await axiosInstance.get(`${userId}/mental-state`);
+        setMentalStates(response.data);
       } catch (error) {
-        console.error("Error fetching mental health data:", error);
+        console.error("Error fetching mental states:", error);
       }
     };
 
-    fetchMentalHealthData();
+    fetchMentalStates();
   }, []);
 
   return (
     <div>
-      <h1>Mental Health Report</h1>
-      <p>Mental State: {mentalState}</p>
+      <h2>Mental States</h2>
+      <ul>
+        {mentalStates.length > 0 ? (
+          mentalStates.map((state, index) => (
+            <li key={index}>{state.mental_state}</li>
+          ))
+        ) : (
+          <li>No mental states found</li>
+        )}
+      </ul>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import axiosInstance from "../../axiosInstance";
 import useAuthStore from "../../store";
 const Questionnaire = () => {
   const [responses, setResponses] = useState({});
-  const userId=useAuthStore((state)=>state.userId)
+  const userId = useAuthStore((state) => state.userId);
 
   const questions = [
     {
