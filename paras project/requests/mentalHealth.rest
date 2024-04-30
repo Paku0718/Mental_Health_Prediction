@@ -1,8 +1,9 @@
 ### Post request
-POST http://localhost:3000/123/mental-health
+POST http://localhost:3000/6625170b2b50ebe55d662c28/mental-health
 Content-Type: application/json
 
 {
+  "userid":"6625170b2b50ebe55d662c28",
   "session_id": "fa2d63c8-078f-4f1c-9ba8-da512f2dcafc",
   "How are you feeling emotionally today?": 1,
   "Have you experienced any significant changes in your mood recently?": 1,
@@ -21,3 +22,11 @@ Content-Type: application/json
   "Do you engage in activities or hobbies that promote relaxation and well-being?": 1,
   "mental_state": "moderate"
 }
+
+### Get request
+GET  http://localhost:3000/6625170b2b50ebe55d662c28/user-name
+Content-Type: application/json
+
+
+
+

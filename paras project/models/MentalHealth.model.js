@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const mentalhealthSchema = new mongoose.Schema({
+  reportId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    auto: true,
+  },
   session_id: String,
   userId: String,
   userName: String, // Added field for user's name

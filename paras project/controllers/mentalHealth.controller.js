@@ -20,6 +20,41 @@ exports.getUserName = async (req, res) => {
   }
 };
 
+exports.GetAllReportByUserId=async(req,res)=>{
+  try {
+    const userId = req.params.userId; // Extracting user id from path parameter
+    if (!checkUserIdExists(userId)) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+       // Construct the query object
+       const query = { userId: userId};
+       
+       // Filter by userId and reportId
+       const records = await MentalHealth.find(query);
+    res.status(200).json(records);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+exports.GetReportByUserIdAndReportId=async(req,res)=>{
+  try {
+
+    const userId = req.params.userId; // Extracting user id from path parameter
+    const reportId=req.params.reportId
+    if (!checkUserIdExists(userId)) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+       // Construct the query object
+       const query = { userId: userId, reportId: reportId };
+
+       // Filter by userId and reportId
+       const records = await MentalHealth.find(query);
+    res.status(200).json(records);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 exports.MentalHealthFormInput = async (req, res) => {
   try {
     const { session_id, userName, ...data } = req.body;
