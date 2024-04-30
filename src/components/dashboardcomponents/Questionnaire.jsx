@@ -1,12 +1,13 @@
 // src/components/MCQForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import axiosInstance from "../../axiosInstance";
 import useAuthStore, { checkUserIdOrLocalStorage } from "../../store";
 
 const Questionnaire = () => {
   const [responses, setResponses] = useState({});
+  const [userName, setUserName] = useState(""); //
   const userId = checkUserIdOrLocalStorage();
 
   const questions = [
@@ -106,12 +107,17 @@ const Questionnaire = () => {
   //   }
   // };
 
+  const handleNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     // Prevent default form submission behavior
     e.preventDefault();
 
     // Construct the data object to be sent in the POST request
     const requestData = {
+      userName,
       ...responses, // Spread the responses object
     };
 
@@ -137,6 +143,22 @@ const Questionnaire = () => {
       <h1 className="text-2xl font-bold mb-4">Mental Health Questionnaire</h1>
       <div className="overflow-y-auto max-h-96">
         <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="mb-4">
+            <label
+              htmlFor="userName"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Your Name
+            </label>
+            <input
+              id="userName"
+              name="userName"
+              type="text"
+              value={userName}
+              onChange={handleNameChange}
+              className="mt-1 p-2 border border-gray-300 rounded-md w-full bg-white"
+            />
+          </div>
           {questions.map((question) => (
             <div
               key={question.id}

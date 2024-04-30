@@ -25,19 +25,28 @@ mongoose
 
 const app = express();
 
+//to remove if not work
+app.use((req, res, next) => {
+  console.log(`Received ${req.method} request at ${req.url}`);
+  next();
+});
+//end
+
+app.use(express.json());
+app.use(morgan("dev")); // Log HTTP requests
+app.use(sessionMiddleware); // Using session middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true, // Allow cookies from cross-origin requests
+  })
+);
+
 // Route to fetch mental health data
 app.get(
   "/api/mental-health/:userId",
   mentalHealthController.getMentalHealthData
 );
-
-app.use(express.json());
-app.use(morgan("dev")); // Log HTTP requests
-app.use(sessionMiddleware); // Using session middleware
-app.use(cors({
-  origin: 'http://localhost:5173',
-  credentials: true, // Allow cookies from cross-origin requests
-}));
 
 app.use("/auth", authRoutes);
 app.use("/", mentalHealthRoutes);
