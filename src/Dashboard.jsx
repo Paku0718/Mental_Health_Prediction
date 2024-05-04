@@ -15,7 +15,7 @@ import Reports from "./components/dashboardcomponents/Reports";
 import MCQForm from "./components/MCQForm";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from './axiosInstance';
+import axiosInstance from "./axiosInstance";
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [isAuthenticated, setIsAuthenticated] = useState(true); // Set initial value as needed
@@ -26,15 +26,15 @@ const Dashboard = () => {
   };
 
   const handleLogout = async () => {
-    navigate("/login");
     try {
       // Make a GET request to the /auth/logout endpoint
-      const response = await axiosInstance.get("auth/logout");
+      const response = await axiosInstance.get("/auth/logout");
 
       // If the logout was successful on the server-side
       if (response.status === 200) {
         // Update the application state
         setIsAuthenticated(false);
+        navigate("/login");
 
         // Redirect to the login page
       } else {
@@ -117,7 +117,7 @@ const Dashboard = () => {
             <li>
               <button
                 className={`flex items-center w-full py-2 px-4 text-left rounded-lg ${
-                  activeTab === "reports" ? "bg-gray-900" : ""
+                  activeTab === "" ? "bg-gray-900" : ""
                 }`}
                 onClick={handleLogout}
               >
